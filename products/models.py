@@ -13,6 +13,7 @@ class Product(models.Model):
     brand= models.ForeignKey('Brand', related_name='product_brand',on_delete=models.SET_NULL,null=True,blank=True,verbose_name=_('brand'))
     sku=models.IntegerField(_('sku'))
     subtitle= models.TextField(_('subtitle'),max_length=500)
+    image= models.ImageField(upload_to='products')
     def __str__(self) :
         return self.name
     
