@@ -1,10 +1,12 @@
-{%extends 'base.html'%}
-{%block body%}
+{% extends 'base.html' %}
+{%load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'ltr/css/product-details.css' %}">
+{% endblock css %}
 
 
-
-
-
+{% block body %}
         <!--=====================================
                     BANNER PART START
         =======================================-->
@@ -35,12 +37,10 @@
                                 <label class="details-label new">new</label>
                                 <label class="details-label off">-10%</label>
                             </div>
-                            <ul class="details-preview"> 
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
+                            <ul class="details-preview">
+                                {% for img in product.product_images.all %}
+                                <li><img src="{{img.image.url}}" alt="product"></li>
+                                {% endfor %}
                             </ul>
                             <ul class="details-thumb">
                                 <li><img src="images/product/01.jpg" alt="product"></li>
@@ -75,10 +75,10 @@
                             </li>
                         </ul>
                         <div class="details-content">
-                            <h3 class="details-name"><a href="#">existing product name</a></h3>
+                            <h3 class="details-name"><a href="#">{{product.name}}</a></h3>
                             <div class="details-meta">
-                                <p>SKU:<span>1234567</span></p>
-                                <p>BRAND:<a href="#">radhuni</a></p>
+                                <p>SKU:<span>{{product.sku}}</span></p>
+                                <p>BRAND:<a href="#">{{product.brand}}</a></p>
                             </div>
                             <div class="details-rating">
                                 <i class="active icofont-star"></i>
@@ -89,10 +89,10 @@
                                 <a href="#">(3 reviews)</a>
                             </div>
                             <h3 class="details-price">
-                                <del>$38.00</del>
-                                <span>$24.00<small>/per kilo</small></span>
+                                <del>{{product.price}}</del>
+                                <span>${{product.price}}<small></small></span>
                             </h3>
-                            <p class="details-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit facere harum natus amet soluta fuga consectetur alias veritatis quisquam ab eligendi itaque eos maiores quibusdam.</p>
+                            <p class="details-desc">{{product.subtitle}}</p>
                             <div class="details-list-group">
                                 <label class="details-list-title">tags:</label>
                                 <ul class="details-tag-list">

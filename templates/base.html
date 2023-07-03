@@ -44,7 +44,13 @@
 
         <!-- CUSTOM -->
         <link rel="stylesheet" href="{% static 'ltr/css/main.css'%}">
-        <link rel="stylesheet" href="{% static 'ltr/css/index.css'%}">
+
+
+        {% block css %}
+            <link rel="stylesheet" href="{% static 'ltr/css/index.css' %}">
+        {% endblock css %}
+
+        
         <!--=====================================
                     CSS LINK PART END
         =======================================-->
@@ -567,7 +573,7 @@
 
 
         <!--=====================================
-                  CART SIDEBAR PART START
+                CART SIDEBAR PART START
         =======================================-->
         <aside class="cart-sidebar">
             <div class="cart-header">
@@ -697,7 +703,7 @@
 
 
         <!--=====================================
-                  NAV SIDEBAR PART START
+                NAV SIDEBAR PART START
         =======================================-->
         <aside class="nav-sidebar">
             <div class="nav-header">
@@ -968,9 +974,9 @@
         <!--=====================================
                     PRODUCT VIEW END
         =======================================-->
-        {% block body%}
+        {% block body %}
         
-        {% endblock body%}
+        {% endblock body %}
         <!--=====================================
                     NEWSLETTER PART START
         =======================================-->

@@ -4,6 +4,14 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
+
+FLAG_TYPES = (
+    ('New' , 'New'),
+    ('Sale' , 'Sale'),
+    ('Feature' , 'Feature'),
+)
+
+
 class Product(models.Model):
     name=models.CharField(max_length=120,verbose_name=_('Name'))
     price= models.FloatField(_('price'))
@@ -14,6 +22,7 @@ class Product(models.Model):
     sku=models.IntegerField(_('sku'))
     subtitle= models.TextField(_('subtitle'),max_length=500)
     image= models.ImageField(upload_to='products')
+    flag= models.CharField(max_length=10,choices=FLAG_TYPES,default='New')
     def __str__(self) :
         return self.name
     
