@@ -1,8 +1,10 @@
+from typing import Any, Iterable, Optional
 from django.db import models
 from taggit.managers import TaggableManager
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 # Create your models here.
 
 FLAG_TYPES = (
@@ -23,14 +25,24 @@ class Product(models.Model):
     subtitle= models.TextField(_('subtitle'),max_length=500)
     image= models.ImageField(upload_to='products')
     flag= models.CharField(max_length=10,choices=FLAG_TYPES,default='New')
+    slug= models.SlugField(null=True,blank=True)
     def __str__(self) :
         return self.name
+    
+    def save(self, *args, **kwargs):
+        self.slug= slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
     
 class Brand(models.Model):
     name= models.CharField(_('name'),max_length=120)
     image=models.ImageField(_('image'),upload_to='brands')
+    slug= models.SlugField(null=True, blank=True)
     def __str__(self) :
         return self.name
+    
+    def save(self, *args, **kwargs):
+        self.slug= slugify(self.name)
+        super(Brand, self).save(*args, **kwargs)
     
 class Review(models.Model):
     user=models.ForeignKey(User,related_name='review_author',on_delete=models.SET_NULL,null=True,blank=True,verbose_name=_('user'))
@@ -43,5 +55,5 @@ class Review(models.Model):
         return str(self.user)
 
 class ProductImages(models.Model):
-    Product=models.ForeignKey(Product,related_name='product_images', on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,related_name='product_images', on_delete=models.CASCADE)
     image=models.ImageField(upload_to='product_images')
