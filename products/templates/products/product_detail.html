@@ -140,7 +140,7 @@
 
 
         <!--=====================================
-                  PRODUCT TAB PART START
+                PRODUCT TAB PART START
         =======================================-->
         <section class="inner-section">
             <div class="container">
@@ -176,7 +176,7 @@
                             </table>
                         </div>
                         <div class="product-details-frame">
-                            <h3 class="frame-title">Reviews</h3>
+                            <h3 class="frame-title">Reviews -{{object.product_review.all|length}}-</h3>
                             <ul class="review-list">
                                 {% for review in object.product_review.all %}
                                     <li class="review-item">
@@ -186,7 +186,7 @@
                                             </a>
                                             <h5 class="review-meta">
                                                 <a href="#">{{review.user}}</a>
-                                                <span>{{review.create_date}}</span>
+                                                <span>{{review.create_date|date:'M d.Y'}}</span>
                                             </h5>
                                         </div>
                                         <ul class="review-rating">
