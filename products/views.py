@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from products.models import Product,Brand,ProductImages,Review
+from products.models import Product,Brand
 # Create your views here.
 
 class ProductList(generic.ListView):
