@@ -5,6 +5,7 @@ from products.models import Product,Brand,ProductImages,Review
 
 class ProductList(generic.ListView):
     model = Product
+    paginate_by=15
 
 class ProductDetail(generic.DetailView):
     model = Product

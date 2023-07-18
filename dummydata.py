@@ -37,14 +37,12 @@ def seed_products(n):
 
 def seed_product_images():
     images=['1.jpg', '2.jpg', '3.jpg', '4.png', '5.webp', '6.avif','7.avif','8.png','9.webp','10.jpg','11.jpg','12.png']
-    for i in range(2006,2008):
-        produkt=Product.objects.filter(id=i).values_list('image')
-        string=str(produkt[0])
-        product_end=string[2:16]
-        ProductImages.objects.create(
-            product=Product.objects.get(id=i),
-            image= product_end
-        )
+    for i in range(2006,4570):
+        for j in range(3):
+            ProductImages.objects.create(
+                product= Product.objects.get(id=i),
+                image= f'product_images/{images[random.randint(0,11)]}'
+            )
 #seed_brand(100)
 #seed_products(2000)
 seed_product_images()
