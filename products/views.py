@@ -16,5 +16,21 @@ class BrandList(generic.ListView):
     paginate_by=10
 
 
-class BrandDetail(generic.DetailView):
-    model = Brand
+class BrandDetail(generic.ListView):
+    model = Product
+    paginate_by=10
+    template_name = 'products/brand_detail.html'
+    
+    
+    #To get the List of the Products that have this Brand name 
+    def get_queryset(self,*args,**kwargs):
+        brand  = Brand.objects.get(slug=self.kwargs['slug'])
+        queryset = Product.objects.filter(brand=brand)
+        return queryset
+    
+    
+    #To get the Brand Infos 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["brand"] = Brand.objects.get(slug=self.kwargs['slug'])
+        return context
