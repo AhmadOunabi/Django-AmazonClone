@@ -13,6 +13,7 @@ class ProductDetail(generic.DetailView):
 
 class BrandList(generic.ListView):
     model=Brand
+    paginate_by=10
 
 
 class BrandDetail(generic.DetailView):
