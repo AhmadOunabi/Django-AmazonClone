@@ -23,7 +23,7 @@
         =======================================-->
 
         <!-- WEBPAGE TITLE -->
-        <title>Index Home - Greeny</title>
+        <title>Index Home - OUNABI</title>
 
         <!--=====================================
                     CSS LINK PART START
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
                         <div class="header-top-welcome">
-                            <p>Welcome to Ecomart in Your Dream Online Store!</p>
+                            <p>Welcome to {{data.name}} Your Online Store!</p>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-3">
@@ -119,7 +119,7 @@
                     </div>
 
                     <a href="index.html" class="header-logo">
-                        <img src="images/logo.png" alt="logo">
+                        <img src="{{data.logo.url}}" alt="logo">
                     </a>
                     <a href="login.html" class="header-widget" title="My Account">
                         <img src="images/user.png" alt="user">
@@ -396,14 +396,14 @@
                                     <i class="icofont-ui-touch-phone"></i>
                                     <p>
                                         <small>call us</small>
-                                        <span>(+880) 183 8288 389</span>
+                                        <span>{{data.call_us}}</span>
                                     </p>
                                 </div>
                                 <div class="navbar-info">
                                     <i class="icofont-ui-email"></i>
                                     <p>
                                         <small>email us</small>
-                                        <span>support@greeny.com</span>
+                                        <span>{{data.email_us}}</span>
                                     </p>
                                 </div>
                             </div>
@@ -822,7 +822,7 @@
                         <i class="icofont-ui-email"></i>
                         <p>
                             <small>email us</small>
-                            <span>support@greeny.com</span>
+                            <span>{{data.emails}}</span>
                         </p>
                     </div>
                 </div>
@@ -1089,20 +1089,20 @@
                                 <li>
                                     <i class="icofont-ui-email"></i>
                                     <p>
-                                        <span>support@greeny.com</span>
-                                        <span>carrer@greeny.com</span>
+                                        <span>{{data.emails}}</span>
+                                        
                                     </p>
                                 </li>
                                 <li>
                                     <i class="icofont-ui-touch-phone"></i>
                                     <p>
-                                        <span>+120 279 532 13</span>
-                                        <span>+120 279 532 14</span>
+                                        <span>{{data.phones}}</span>
+                                        
                                     </p>
                                 </li>
                                 <li>
                                     <i class="icofont-location-pin"></i>
-                                    <p>1Hd- 50, 010 Avenue, NY 90001 United States</p>
+                                    <p>{{data.address}}</p>
                                 </li>
                             </ul>
                         </div>
@@ -1155,7 +1155,7 @@
             </div>
         </footer>
         <!--=====================================
-                      FOOTER PART END
+                    FOOTER PART END
         =======================================-->
         
 
