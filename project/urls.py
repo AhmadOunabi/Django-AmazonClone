@@ -19,12 +19,13 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from products import views
-from settings import views
+from settings.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/',include('products.urls') ),
     path('summernote/', include('django_summernote.urls')),
+    path('',home)
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
