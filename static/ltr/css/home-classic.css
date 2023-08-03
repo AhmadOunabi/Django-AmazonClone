@@ -1,7 +1,15 @@
 /*========================================
           HOME-CLASSIC PAGE STYLE
 =========================================*/
+
+.suggest-card img {
+  width: 250px;
+  border-radius: 8px;
+  height: 150px;
+}
+
 .navbar-part {
+  
   position: absolute;
   top: 128px;
   left: 0px;
