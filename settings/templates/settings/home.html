@@ -96,7 +96,7 @@
                 <ul class="suggest-slider slider-arrow">
                     {% for product in products %}
                         <li>
-                            <a class="suggest-card" href="shop-4column.html">
+                            <a class="suggest-card" href="/products/{{product.slug}}">
                                 <img src="{{product.image.url}}" alt="suggest">
                                 <h5>{{product.name}} <span>{{product.quantity}}</span></h5>
                             </a>
@@ -133,7 +133,7 @@
                                 <button class="product-wish wish">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <a class="product-image" href="product-video.html">
+                                <a class="product-image" href="/products/{{sale.slug}}">
                                     <img src="{{sale.image.url}}" alt="product">
                                 </a>
                             </div>
@@ -206,7 +206,7 @@
                                     <button class="feature-wish wish">
                                         <i class="fas fa-heart"></i>
                                     </button>
-                                    <a class="feature-image" href="product-video.html">
+                                    <a class="feature-image" href="products/{{feat.slug}}">
                                         <img src="{{feat.image.url}}" alt="product">
                                     </a>
                                 </div>
