@@ -22,10 +22,12 @@ from products import views
 from settings.views import home
 
 urlpatterns = [
+    path("accounts/", include("django.contrib.auth.urls")),
     path('admin/', admin.site.urls),
     path('products/',include('products.urls') ),
     path('summernote/', include('django_summernote.urls')),
-    path('',home)
+    path('',home),
+    
     ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
