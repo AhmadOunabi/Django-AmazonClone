@@ -14,3 +14,8 @@ class UserForm(forms.ModelForm):
     class Meta:
         user = User
         fields = ['username','email']
+
+
+class UserActivationForm(forms.Form):
+    code= forms.CharField(max_length=10)
+    
