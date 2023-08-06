@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user= models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    image= models.ImageField(upload_to='accounts')
+    image= models.ImageField(upload_to='accounts', default='user-icon-human-person-sign-vector-20444565.jpg')
     
     def __str__(self):
         return str(self.user)
