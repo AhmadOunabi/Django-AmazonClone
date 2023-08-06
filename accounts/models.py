@@ -2,11 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from functions.code_generator import generate_code
 # Create your models here.
 
 class Profile(models.Model):
     user= models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     image= models.ImageField(upload_to='accounts', default='user-icon-human-person-sign-vector-20444565.jpg')
+    code= models.CharField(max_length=10, default=generate_code)
     
     def __str__(self):
         return str(self.user)
