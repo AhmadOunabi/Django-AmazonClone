@@ -17,9 +17,9 @@ def signup(request):
             
             form.save()
             #get the User
-            user= User.objects.get(username=username)
+            user = User.objects.get(username=username)
             #get User's Profile
-            user_profile=Profile.objetcs.get(user=user)
+            user_profile = Profile.objects.get(user=user)
             # Send Gmail Confirmation Code
             send_mail(
                 "Activation Code",
@@ -29,10 +29,11 @@ def signup(request):
                 fail_silently=False,
             )
             #redirect to Confirmation Code page
+            return redirect(f"/accounts/{username}/activate")
             
     else:
             form=SignupForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'registration/signup.html',{'form': form})
 
 
 
@@ -47,7 +48,11 @@ def user_activate(request, username):
             code=form.cleaned_data['code']
             if code == user_profile.code:
                 user.is_active == True
+                user.save()
+                user_profile.code=''
+                user_profile.save()
+                return redirect('/')
     else:
         form=UserActivationForm()
     
-    return redirect('/')
+    return render(request, 'registration/activate.html',{'form':form} )
