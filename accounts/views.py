@@ -3,6 +3,7 @@ from .forms import SignupForm, UserActivationForm
 from .models import Profile,Phones,Address
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -56,3 +57,13 @@ def user_activate(request, username):
         form=UserActivationForm()
     
     return render(request, 'registration/activate.html',{'form':form} )
+
+
+
+
+@login_required
+def profile(request):
+    profile = Profile.objects.get(user=request.user)
+    phones = Phones.objects.filter(user=request.user)
+    address = Address.objects.filter(user=request.user)
+    return render(request,'accounts/profile.html',{'profile':profile,'phones':phones , 'address':address})
