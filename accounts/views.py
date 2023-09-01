@@ -39,6 +39,7 @@ def signup(request):
 
 
 
+
 def user_activate(request, username):
     user=User.objects.get(username=username)
     user_profile=Profile.objects.get(user=user)
