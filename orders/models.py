@@ -28,3 +28,11 @@ class Order(models.Model):
     
     def __str__(self):
         return str(self.user)
+    
+
+class OrderDetail(models.Model):
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,related_name='order_detail')
+    product=models.ForeignKey(Product,on_delete=models.SET_NULL,related_name='orderdetail_product')
+    quantity=models.IntegerField()
+    price=models.FloatField()
+

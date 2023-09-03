@@ -17,7 +17,12 @@ class Company(models.Model):
     ios_app = models.URLField(null=True,blank=True)
     
     
+    
     def __str__(self):
         return self.name
     
-    
+    class DeliveryFee(models.Model):
+        fee=models.FloatField()
+        
+        def __str__(self):
+            return self.fee
