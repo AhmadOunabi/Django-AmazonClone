@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'settings',
     'django_bootstrap5',
+    'orders',
     
 ]
 
