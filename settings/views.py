@@ -16,5 +16,5 @@ def home(request):
         'sale_products':sale_products , 
         'feature_products':feature_products,
         'new_products':new_products , 
-        'reviews':reviews
+        'reviews':reviews 
     })
