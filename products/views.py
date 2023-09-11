@@ -14,7 +14,7 @@ class ProductDetail(generic.DetailView):
 class BrandList(generic.ListView):
     model=Brand
     paginate_by=10
-
+    template_name = 'products/brand_list.html'
 
 class BrandDetail(generic.ListView):
     model = Product

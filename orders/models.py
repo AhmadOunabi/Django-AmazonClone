@@ -47,8 +47,17 @@ CART_STATUS=(
 class Cart(models.Model):
     user=models.ForeignKey(User,related_name='cart_owner',on_delete=models.SET_NULL,null=True,blank=True)
     status=models.CharField(max_length=20,choices=CART_STATUS)
+    
     def __str__(self):
         return str(self.user)
+    
+    def cart_total(self):
+        total=0
+        cart_items=self.cart_detail.all()
+        for item in cart_items:
+            total+=item.total
+        return total
+        
 
 
 class CartDetail(models.Model):

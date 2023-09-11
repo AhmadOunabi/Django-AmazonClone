@@ -6,7 +6,7 @@ def get_or_create_cart(request):
         if not created:
             cart_detail=CartDetail.objects.filter(cart=cart)
             
-        return{'cart':cart,
+        return{'cart_data':cart,
                'cart_detail':cart_detail,
                }
     else:
