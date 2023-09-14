@@ -11,7 +11,10 @@ def product_list_api(request):
     return Response({'products': data})
 
 
-
-
+@api_view(['GET'])
+def product_detail_api(request, product_id):
+    product=Product.objects.get(id=product_id)
+    data=ProductSerializer(product).data    #json
+    return Response({'product': data})
 
 
