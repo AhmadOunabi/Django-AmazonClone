@@ -28,6 +28,7 @@ urlpatterns = [
     path('products/',include('products.urls') ),
     path('summernote/', include('django_summernote.urls')),
     path('',home),
+     path('api-auth/', include('rest_framework.urls')),
     
     
     ]
