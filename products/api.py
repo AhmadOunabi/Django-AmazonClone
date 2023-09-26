@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from .serializers import ProductListSerializer, ProductDetailSerializer, BrandListSerializer, BrandDetailSerializer
 from .models import Product, Brand
 from rest_framework import generics
@@ -22,6 +23,7 @@ from rest_framework import generics
 class ProductListAPI(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
+    permission_classes = [IsAuthenticated]
     
     
 
