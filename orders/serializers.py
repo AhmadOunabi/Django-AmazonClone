@@ -8,6 +8,7 @@ class CartSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class OrderListSerializer(serializers.ModelSerializer):
+    user=serializers.StringRelatedField()     # to show users name instead of ID
     class Meta:
         model = Order
         fields= '__all__'

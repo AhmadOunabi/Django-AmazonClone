@@ -6,7 +6,9 @@ from django.contrib.auth.models import User
 from products.models import Product
 
 
-class CartDetailCreateAPI(generics.GenericAPIView):
+class CartDetailCreateAPI(generics.GenericAPIView): 
+    serializer_class=CartSerializer
+    
     def get(self,request,*args,**kwargs):                       # get or create Cart based on user
         user=User.objects.get(username=self.kwargs['username'])                     #we didnt use request.user because the cart can be added without user login
         cart,created=Cart.objects.get_or_create(user=user,status='Inprogress')
@@ -32,4 +34,15 @@ class CartDetailCreateAPI(generics.GenericAPIView):
         cart_detail.delete()
         return Response({'status':200, 'message': 'Product Deleted Successfully'})
         
+
+
+class OrderListAPI(generics.ListAPIView):
+    serializer_class=OrderListSerializer
+    queryset=Order.objects.all()
+    
+    def list(self,request,*args, **kwargs):                      # function to recieve the orders from specific User NOT ALL USERS
+        user=User.objects.get(username=self.kwargs['username'])
+        queryset=self.get_queryset().filter(user=user)
+        data=OrderListSerializer(queryset,many=True).data
+        return Response({'orders':data})
         
