@@ -9,13 +9,13 @@ from products.models import Product
 class CartDetailCreateAPI(generics.GenericAPIView): 
     serializer_class=CartSerializer
     
-    def get(self,request,*args,**kwargs):                       # get or create Cart based on user
+    def get(self,request,*args,**kwargs):                                           # get or create Cart based on user
         user=User.objects.get(username=self.kwargs['username'])                     #we didnt use request.user because the cart can be added without user login
         cart,created=Cart.objects.get_or_create(user=user,status='Inprogress')
         data=CartSerializer(cart).data
         return Response({'cart':data})
     
-    def post(self,request,*args, **kwargs):                     # craete or update products in the Cart
+    def post(self,request,*args, **kwargs):                                         # craete or update products in the Cart
         user=User.objects.get(username=self.kwargs['username'])
         product=Product.object.get(id=request.data['product_id'])
         cart=Cart.object.get(user=user,status='Inprogress')
@@ -26,7 +26,7 @@ class CartDetailCreateAPI(generics.GenericAPIView):
         cart_detail.save()
         return Response({'status':200,'message':'Product Added Successfully'})
     
-    def delete(self,request,*args, **kwargs):
+    def delete(self,request,*args, **kwargs):                                       # Delete Products from the cart 
         user=User.objects.get(username=self.kwargs['username'])
         product= Product.objects.get(id=request.data['product_id'])
         cart=Cart.objects.get(user=user,status='Inprogress')
@@ -45,4 +45,8 @@ class OrderListAPI(generics.ListAPIView):
         queryset=self.get_queryset().filter(user=user)
         data=OrderListSerializer(queryset,many=True).data
         return Response({'orders':data})
-        
+
+class OrderDetailAPI(generics.RetrieveAPIView):
+    serializer_class=OrderDetailSerializer
+    queryset=Order.objects.all()
+
